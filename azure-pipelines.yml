@@ -10,9 +10,14 @@ jobs:
     strategy:
       matrix:
         TEST1:
-          a: 100
+          tf: 1.11
         TEST2:
-          a: 200
+          tf: 1.10
     steps:
-    - script: echo $A
+    - script: echo $TF
       displayName: 'output matrix var'
+
+    - script: |
+        pip install --upgrade pip.
+        pip3 install tensorflow==$TF
+      displayName: 'install tensorflow'
