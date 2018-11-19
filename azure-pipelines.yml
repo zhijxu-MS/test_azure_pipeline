@@ -17,7 +17,12 @@ jobs:
     - script: echo $TF
       displayName: 'output matrix var'
 
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '3.6'
+        architecture: 'x64'
     - script: |
-        pip install --upgrade pip.
-        pip3 install tensorflow==$TF
+        python -m pip install --upgrade pip setuptools wheel
+        pip install tensorflow==$TF
+        pip list
       displayName: 'install tensorflow'
