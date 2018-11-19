@@ -7,34 +7,12 @@ jobs:
   - job: LINUX
     pool:
       vmImage: 'Ubuntu 16.04'
-    
+    strategy:
+      matrix:
+        TEST1:
+          a: 100
+        TEST2:
+          a: 200
     steps:
-    - script: echo Hello, world!
-      displayName: 'Run a one-line script'
-    
-    - script: |
-        echo Add other tasks to build, test, and deploy your project.
-        echo See https://aka.ms/yaml
-      displayName: 'Run a multi-line script'
-    
-    - script: |
-        echo "run local script".
-        bash 1.sh
-      displayName: 'test'
-  - job: LINUX2
-    pool:
-      vmImage: 'Ubuntu 16.04'
-    
-    steps:
-    - script: echo Hello, world!
-      displayName: 'Run a one-line script'
-    
-    - script: |
-        echo Add other tasks to build, test, and deploy your project.
-        echo See https://aka.ms/yaml
-      displayName: 'Run a multi-line script'
-    
-    - script: |
-        echo "run local script".
-        bash 1.sh
-      displayName: 'test'
+    - script: echo $A
+      displayName: 'output matrix var'
