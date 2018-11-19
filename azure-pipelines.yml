@@ -26,3 +26,25 @@ jobs:
         pip install tensorflow==$TF
         pip list
       displayName: 'install tensorflow'
+  - job: WINDOWS
+    pool:
+      vmImage: 'vs2017-win2016'
+    strategy:
+      matrix:
+        TEST1:
+          tf: 1.11
+        TEST2:
+          tf: 1.10
+    steps:
+    - script: echo $TF
+      displayName: 'output matrix var'
+
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '3.6'
+        architecture: 'x64'
+    - bash: |
+        python -m pip install --upgrade pip setuptools wheel
+        pip install tensorflow==$TF
+        pip list
+      displayName: 'install tensorflow'
