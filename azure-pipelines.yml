@@ -36,8 +36,22 @@ jobs:
         TEST2:
           tf: 1.10
     steps:
-    - script: echo $TF
+    - script: |
+        echo $TF
+        var1=111
+      env: var1
       displayName: 'output matrix var'
+
+    - script: |
+        echo $VAR1
+        echo $var1
+        var1=222
+        VAR1=333
+      env: var1
+
+    - script: |
+        echo $VAR1
+        echo $var1
 
     - task: UsePythonVersion@0
       inputs:
