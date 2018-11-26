@@ -15,7 +15,11 @@ jobs:
           tf: 1.10
     steps:
     - script: |
-        echo $TEST_VAR
+        if [ "$TEST_VAR" == "" ]; then
+          echo $TEST_VAR
+        else
+          echo "not equal"
+        fi
         echo $KEY_CODE
       displayName: 'output matrix var'
 
