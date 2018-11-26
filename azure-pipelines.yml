@@ -14,51 +14,8 @@ jobs:
         TEST2:
           tf: 1.10
     steps:
-    - script: echo $TF
+    - script: |
+        echo $TEST_VAR
+        echo $KEY_CODE
       displayName: 'output matrix var'
 
-    - task: UsePythonVersion@0
-      inputs:
-        versionSpec: '3.6'
-        architecture: 'x64'
-    - script: |
-        python -m pip install --upgrade pip setuptools wheel
-        pip install tensorflow==$TF onnxruntime==0.1.3
-        pip list
-      displayName: 'install tensorflow'
-  - job: WINDOWS
-    pool:
-      vmImage: 'vs2017-win2016'
-    strategy:
-      matrix:
-        TEST1:
-          tf: 1.11
-        TEST2:
-          tf: 1.10
-    steps:
-    - script: |
-        echo $TF
-        var1=111
-      env: var1
-      displayName: 'output matrix var'
-
-    - script: |
-        echo $VAR1
-        echo $var1
-        var1=222
-        VAR1=333
-      env: var1
-
-    - script: |
-        echo $VAR1
-        echo $var1
-
-    - task: UsePythonVersion@0
-      inputs:
-        versionSpec: '3.6'
-        architecture: 'x64'
-    - bash: |
-        python -m pip install --upgrade pip setuptools wheel
-        pip install tensorflow==$TF onnxruntime==0.1.3
-        pip list
-      displayName: 'install tensorflow'
